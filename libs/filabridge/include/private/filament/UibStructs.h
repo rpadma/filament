@@ -185,8 +185,11 @@ static_assert(sizeof(LightsUib) == 64, "the actual UBO is an array of 256 mat4")
 // UBO for punctual (spot light) shadows.
 struct ShadowUib {
     static constexpr utils::StaticString _name{ "ShadowUniforms" };
-    math::mat4f spotLightFromWorldMatrix[CONFIG_MAX_SHADOW_CASTING_SPOTS];
-    math::float4 directionShadowBias[CONFIG_MAX_SHADOW_CASTING_SPOTS]; // light direction, normal bias
+    struct alignas(16) ShadowData {
+        math::mat4f spotLightFromWorldMatrix;
+        math::float4 directionShadowBias;
+    };
+    ShadowData shadows[CONFIG_MAX_SHADOW_CASTING_SPOTS];
 };
 
 // UBO froxel record buffer.

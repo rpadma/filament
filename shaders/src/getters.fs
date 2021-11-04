@@ -100,10 +100,10 @@ highp vec3 getNormalizedViewportCoord2() {
 
 #if defined(HAS_SHADOWING) && defined(HAS_DYNAMIC_LIGHTING)
 highp vec4 getSpotLightSpacePosition(uint index) {
-    vec3 dir = shadowUniforms.directionShadowBias[index].xyz;
-    float bias = shadowUniforms.directionShadowBias[index].w;
+    vec3 dir = shadowUniforms.shadows[index].directionShadowBias.xyz;
+    float bias = shadowUniforms.shadows[index].directionShadowBias.w;
     return computeLightSpacePosition(vertex_worldPosition.xyz,
-            vertex_worldNormal, dir, bias, shadowUniforms.spotLightFromWorldMatrix[index]);
+            vertex_worldNormal, dir, bias, shadowUniforms.shadows[index].spotLightFromWorldMatrix);
 }
 #endif
 

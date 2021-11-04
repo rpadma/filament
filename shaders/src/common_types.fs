@@ -22,3 +22,9 @@
 
 #define float3x3 mat3
 #define float4x4 mat4
+
+struct ShadowData {
+    mat4 spotLightFromWorldMatrix;
+    vec4 directionShadowBias;
+};
+

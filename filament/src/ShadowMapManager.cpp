@@ -534,8 +534,8 @@ ShadowMapManager::ShadowTechnique ShadowMapManager::updateSpotShadowMaps(FEngine
             const float normalBias = shadowMapInfo.vsm ? 0.0f : options->normalBias;
 
             auto& s = shadowUb.edit();
-            s.directionShadowBias[i] = float4{ direction, normalBias * texelSizeWorldSpace };
-            s.spotLightFromWorldMatrix[i] = shadowMap.getLightSpaceMatrix();
+            s.shadows[i].directionShadowBias = float4{ direction, normalBias * texelSizeWorldSpace };
+            s.shadows[i].spotLightFromWorldMatrix = shadowMap.getLightSpaceMatrix();
 
             shadowTechnique |= ShadowTechnique::SHADOW_MAP;
         }
